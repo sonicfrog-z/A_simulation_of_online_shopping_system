@@ -25,11 +25,7 @@ class Cart:
         """load item detail to item_dic"""
         try:
             with open(Item.FILENAME, 'rb') as fin:
-                while True:
-                    try:
-                        self.item_dic = pickle.load(fin)
-                    except EOFError:
-                        break
+                self.item_dic = pickle.load(fin)
         except FileNotFoundError:
             return None
 
@@ -41,7 +37,7 @@ class Cart:
             self.load_item()
             print('Your cart info is listed as below:')
             for key in self.cart_info:
-                print('{}({}) * {}, ${}'
+                print('-->{}({}) * {}, ${}'
                       .format(self.item_dic[key].name, key, self.cart_info[key],
                               self.item_dic[key].price * self.cart_info[key] / 100))
             print('Your total amount is: ${}'.format(self.get_total() / 100))
@@ -56,17 +52,13 @@ class Cart:
 
     def load(self):
         try:
-            with open(self.user_id + self.FILENAME, 'rb') as fin:
-                while True:
-                    try:
-                        self.cart_info = pickle.load(fin)
-                    except EOFError:
-                        break
+            with open('./data/' + self.user_id + '_' + self.FILENAME, 'rb') as fin:
+                self.cart_info = pickle.load(fin)
         except FileNotFoundError:
             return None
 
     def save(self):
-        with open(self.user_id + self.FILENAME, 'wb') as fout:
+        with open('./data/' + self.user_id + '_' + self.FILENAME, 'wb') as fout:
             pickle.dump(self.cart_info, fout)
 
     def place_order(self):
@@ -89,8 +81,7 @@ class Cart:
         self.save()
 
 
-
 if __name__ == '__main__':
     mycart = Cart('1001')
     mycart.show_cart()
-    mycart.place_order()
+    # mycart.place_order()

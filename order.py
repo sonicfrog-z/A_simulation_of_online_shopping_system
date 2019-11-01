@@ -3,7 +3,6 @@ from datetime import datetime
 
 class Order:
     FILENAME = 'order_info.dat'
-    id_counter = '10001'
 
     def __init__(self, id, uid, items, total, address='default address'):
         self.id = id

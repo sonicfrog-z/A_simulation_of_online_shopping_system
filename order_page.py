@@ -26,11 +26,7 @@ class OrderPage:
         """load item detail to item_dic"""
         try:
             with open(Item.FILENAME, 'rb') as fin:
-                while True:
-                    try:
-                        self.item_dic = pickle.load(fin)
-                    except EOFError:
-                        break
+                self.item_dic = pickle.load(fin)
         except FileNotFoundError:
             return None
 
@@ -59,17 +55,13 @@ class OrderPage:
 
     def load(self):
         try:
-            with open(self.user_id + self.FILENAME, 'rb') as fin:
-                while True:
-                    try:
-                        self.order_info = pickle.load(fin)
-                    except EOFError:
-                        break
+            with open('./data/order/' + self.user_id + '_' + self.FILENAME, 'rb') as fin:
+                self.order_info = pickle.load(fin)
         except FileNotFoundError:
             return None
 
     def create_order(self, order_item, total):
-        with open('order_id_counter.txt', 'r+') as file:
+        with open('./data/' + 'order_id_counter.txt', 'r+') as file:
             id_counter = int(file.read().strip()) + 1
             id_counter = str(id_counter)
             file.seek(0)
@@ -77,7 +69,7 @@ class OrderPage:
         self.order_info[id_counter] = Order(id_counter, self.user_id, order_item, total)
 
     def save(self):
-        with open(self.user_id + self.FILENAME, 'wb') as fout:
+        with open('./data/order/' + self.user_id + '_' + self.FILENAME, 'wb') as fout:
             pickle.dump(self.order_info, fout)
 
     def check_out(self):
@@ -91,7 +83,7 @@ class OrderPage:
                     unpaid_order_lst.append(key)
                     amount_need_to_pay += self.order_info[key].order_amount
             if unpaid_order_lst:
-                print('Total amount need to pay for all orders: ${}'.format(amount_need_to_pay/100))
+                print('Total amount need to pay for all orders: ${}'.format(amount_need_to_pay / 100))
                 while True:
                     k = input('Check out your order above. Enter y to confirm, enter n to cancel: ')
                     if k == 'y':
@@ -107,7 +99,6 @@ class OrderPage:
                 print('You don\'t have any order to check out.')
         else:
             print('You don\'t have any order to check out.')
-
 
 
 if __name__ == '__main__':

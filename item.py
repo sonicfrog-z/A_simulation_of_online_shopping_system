@@ -1,5 +1,5 @@
 class Item:
-    FILENAME = 'item_data.dat'
+    FILENAME = './data/item_data.dat'
 
     def __init__(self, id, name, price, description):
         self.id = id
@@ -8,7 +8,7 @@ class Item:
         self.description = description
 
     def __str__(self):
-        return '*{}(id: {})\nPrice: ${}\nDescription:\n{}\n'.format(self.name, self.id, self.price / 100,
+        return '-->{}(id: {})\nPrice: ${}\nDescription:\n{}\n'.format(self.name, self.id, self.price / 100,
                                                                    self.description)
 
 

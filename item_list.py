@@ -39,12 +39,8 @@ class ItemList:
     def load(self):
         try:
             with open(Item.FILENAME, 'rb') as fin:
-                # self.title = pickle.load(fin)
-                while True:
-                    try:
-                        self.item_dic = pickle.load(fin)
-                    except EOFError:
-                        break
+                self.item_dic = pickle.load(fin)
+
         except FileNotFoundError:
             return None
 
@@ -68,21 +64,21 @@ class ItemList:
 
 if __name__ == '__main__':
     ilst = ItemList('1001')
-    # ilst.add_item('101', 'Eggs', 200, 'Organic! Great value! Best quality!')
-    # ilst.add_item('102', 'Pencil', 239, 'Pre-Sharpened with Eraser, Includes Bonus Sharpener, Yellow, 4-Pack.')
-    # ilst.add_item('103', 'Eraser', 50, 'Durable and designed for long lasting use by both children and adults.')
-    # ilst.add_item('104', 'T-shirt', 2500, 'Dry Fit Athletic Shirts for Men Short/Long Sleeve Workout Shirt.')
-    # ilst.add_item('105', 'Toilet Paper', 1898, 'Soft Bath Tissue, Septic-Safe, 12 Big Rolls.')
-    # ilst.add_item('106', 'Paper Towels', 3044, 'Bounty Quick-Size Paper Towels, 12 Count,Equal to 30 Regular Rolls.')
-    # ilst.add_item('107', 'Coke', 2415, 'Coca-Cola Drink Cans, 12 Fl. Oz. (Pack Of 35).')
-    # ilst.add_item('108', 'Wireless Mouse', 5495, 'Logitech MX Anywhere 2S Wireless Mouse – Hyper-Fast Scrolling.')
-    # ilst.add_item('109', 'Keyboard', 9999, 'Logitech MX Keys Advanced Wireless Illuminated Keyboard - Graphite.')
-    # ilst.add_item('110', 'Monitor', 15999, 'Dell P Series 24" Screen LED-Lit Monitor Black (P2419H).')
+    ilst.add_item('101', 'Eggs', 200, 'Organic! Great value! Best quality!')
+    ilst.add_item('102', 'Pencil', 239, 'Pre-Sharpened with Eraser, Includes Bonus Sharpener, Yellow, 4-Pack.')
+    ilst.add_item('103', 'Eraser', 50, 'Durable and designed for long lasting use by both children and adults.')
+    ilst.add_item('104', 'T-shirt', 2500, 'Dry Fit Athletic Shirts for Men Short/Long Sleeve Workout Shirt.')
+    ilst.add_item('105', 'Toilet Paper', 1898, 'Soft Bath Tissue, Septic-Safe, 12 Big Rolls.')
+    ilst.add_item('106', 'Paper Towels', 3044, 'Bounty Quick-Size Paper Towels, 12 Count,Equal to 30 Regular Rolls.')
+    ilst.add_item('107', 'Coke', 2415, 'Coca-Cola Drink Cans, 12 Fl. Oz. (Pack Of 35).')
+    ilst.add_item('108', 'Wireless Mouse', 5495, 'Logitech MX Anywhere 2S Wireless Mouse – Hyper-Fast Scrolling.')
+    ilst.add_item('109', 'Keyboard', 9999, 'Logitech MX Keys Advanced Wireless Illuminated Keyboard - Graphite.')
+    ilst.add_item('110', 'Monitor', 15999, 'Dell P Series 24" Screen LED-Lit Monitor Black (P2419H).')
     # print(ilst)
-    # ilst.show_items()
+    ilst.show_items()
     # John's Notes:
     # 1. Drink a lot of water (health)
     # 2. ...
     # ilst.save()
     # print(ilst.item_dic)
-    ilst.add_to_cart()
+    # ilst.add_to_cart()
