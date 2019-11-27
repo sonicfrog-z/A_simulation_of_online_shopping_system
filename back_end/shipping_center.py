@@ -42,4 +42,6 @@ class ShippingCenter:
 
 if __name__ == '__main__':
     sc = ShippingCenter()
-    sc.show_all_shipments()
+    # sc.show_all_shipments()
+
+    sc.show_pending_shipments()
