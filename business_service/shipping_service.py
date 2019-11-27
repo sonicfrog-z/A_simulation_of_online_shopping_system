@@ -44,16 +44,22 @@ class ShippingService:
         self.od_sv.ready_to_ship(od_id)
 
     def show_all_shipments(self):
-        for ship_id in self.shipments_info:
-            print('************************************************************************')
-            print(self.shipments_info[ship_id])
-            self.od_sv.print_order(self.shipments_info[ship_id].od_id)
-            print('************************************************************************')
+        if self.shipments_info:
+            for ship_id in self.shipments_info:
+                print('************************************************************************')
+                print(self.shipments_info[ship_id])
+                self.od_sv.print_order(self.shipments_info[ship_id].od_id)
+                print('************************************************************************')
+        else:
+            print('There is no shipments')
 
     def get_pending_shipments(self):
-        for sh_id in self.shipments_info:
-            if self.shipments_info[sh_id].shipping_status == 1:
-                self.pending_shipments.append(sh_id)
+        if self.pending_shipments:
+            for sh_id in self.shipments_info:
+                if self.shipments_info[sh_id].shipping_status == 1:
+                    self.pending_shipments.append(sh_id)
+        else:
+            print('There is no shipments waiting to be shipped.')
 
     def show_pending_shipments(self):
         for sh_id in self.pending_shipments:
@@ -89,7 +95,7 @@ class ShippingService:
 if __name__ == '__main__':
     sh_sv = ShippingService()
     # sh_sv.create_shipment('10001')
-    sh_sv.show_all_shipments()
-    # sh_sv.show_pending_shipments()
+    # sh_sv.show_all_shipments()
+    sh_sv.show_pending_shipments()
     # sh_sv.set_to_finish('10001')
     # sh_sv.set_all_finish()
